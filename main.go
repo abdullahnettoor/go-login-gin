@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/gob"
 	"fmt"
 	"login-gin/handlers"
 	"login-gin/models"
@@ -11,6 +12,7 @@ import (
 var Users = map[string]models.User{}
 
 func main() {
+	gob.Register(models.User{})
 	// Create Server
 	r := gin.Default()
 
