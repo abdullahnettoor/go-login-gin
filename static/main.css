@@ -1,0 +1,78 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+main{
+    height: 100dvh;
+    width: 100dvw;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.btn-text {
+    text-decoration: underline;
+}
+
+.form-control, .form-control:focus
+ {
+    background-color:  #ffffff2b!important;
+    color: #003c0d;
+  }
+
+
+
+/* .form-floating>.form-control-plaintext~label, 
+.form-floating>.form-control:focus~label, 
+.form-floating>.form-control:not(:placeholder-shown)~label, 
+.form-floating>.form-select~label
+{
+color: rgb(50, 50, 50) !important;
+} */
+
+.form-floating>.form-control-plaintext~label::after, 
+.form-floating>.form-control:focus~label::after, 
+.form-floating>.form-control:not(:placeholder-shown)~label::after, 
+.form-floating>.form-select~label::after
+{
+    background-color: transparent !important;
+}
+
+.body-bg {
+    position: absolute;
+    z-index: -1;
+    height: 100dvh;
+    width: 100dvw;
+    object-fit: cover;
+}
+
+.btn-label {
+	position: relative;
+	left: -8px;
+	display: inline-block;
+	padding: 10px 6px ;
+}
+
+.btn-labeled {
+	padding-top: 0;
+	padding-bottom: 0;
+    border-color: rgb(0, 40, 0);
+    transition: 200ms ease-in-out;
+}
+
+
+.btn-labeled:hover{
+    transition: 200ms ease-in-out;
+    border: 2px solid rgb(0, 40, 0);
+}
+
+.btn {
+	margin-bottom: 10px;
+}

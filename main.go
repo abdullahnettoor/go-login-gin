@@ -2,24 +2,31 @@ package main
 
 import (
 	"fmt"
-	// "login-gin/handlers"
-	"net/http"
+	"login-gin/handlers"
+	"login-gin/models"
 
 	"github.com/gin-gonic/gin"
 )
 
+var Users = map[string]models.User{}
+
 func main() {
-	fmt.Println("Hello World")
-
+	// Create Server
 	r := gin.Default()
-	r.GET("/", func(ctx *gin.Context) {
-		ctx.JSON(http.StatusOK, gin.H{
-			"greet": "Welcome Friend",
-		})
-	})
 
-	// handlers.Login()
+	// Load Html and other files
+	r.LoadHTMLGlob("view/*.html")
+	r.Static("/static", "./static")
 
+	r.GET("/", handlers.Home)
+	r.GET("/login", handlers.Login)
+	r.POST("/login", handlers.LoginPost)
+	r.GET("/signup", handlers.Signup)
+	r.POST("/signup", handlers.SignupPost)
+	r.POST("/logout", handlers.Logout)
+
+	// Start Server
+	fmt.Println("Server started: http://0.0.0.0:8080")
 	r.Run(":8080")
 
 }
