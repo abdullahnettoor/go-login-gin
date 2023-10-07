@@ -9,29 +9,37 @@ import (
 )
 
 func Signup(c *gin.Context) {
+	// Clear Cache
 	utils.ClearCache(c)
 
+	// Check if user is already logged in
 	userSession := GetSessionValue(c, "login-session", "username")
 	if userSession != nil {
+		// Redirect to Home
 		fmt.Println("Redirected to Home")
 		c.HTML(http.StatusSeeOther, "index.html", userSession)
 		return
 	}
 
+	// Load Signup
 	fmt.Println("Signup Loaded")
 	c.HTML(http.StatusOK, "signup.html", nil)
 }
 
 func SignupPost(c *gin.Context) {
+	// Clear Cache
 	utils.ClearCache(c)
 
+	// Check if user is already logged in
 	userSession := GetSessionValue(c, "login-session", "username")
 	if userSession != nil {
+		// Redirect to Home
 		fmt.Println("Redirected to Home")
 		c.HTML(http.StatusSeeOther, "index.html", userSession)
 		return
 	}
 
+	// Retrieve data from Html Form
 	c.Request.ParseForm()
 	username := c.Request.FormValue("name")
 	email := c.Request.FormValue("email")
@@ -57,7 +65,7 @@ func SignupPost(c *gin.Context) {
 	if err != nil {
 		c.Error(err)
 	}
+	// Load home
 	c.HTML(http.StatusOK, "index.html", user)
 	c.Redirect(http.StatusOK, "/")
-
 }

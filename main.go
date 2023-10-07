@@ -12,7 +12,8 @@ import (
 var Users = map[string]models.User{}
 
 func main() {
-	gob.Register(models.User{})
+	gob.Register(models.User{}) // This is used to export structs to Gorilla Sessions
+
 	// Create Server
 	r := gin.Default()
 
@@ -20,6 +21,7 @@ func main() {
 	r.LoadHTMLGlob("view/*.html")
 	r.Static("/static", "./static")
 
+	// Handle Requests
 	r.GET("/", handlers.Home)
 	r.GET("/login", handlers.Login)
 	r.POST("/login", handlers.LoginPost)

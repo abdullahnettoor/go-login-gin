@@ -9,15 +9,18 @@ import (
 )
 
 func Home(c *gin.Context) {
+	// Clear cache of browser
 	utils.ClearCache(c)
 
+	// Check if user logged in
 	userSession := GetSessionValue(c, "login-session", "username")
 	if userSession != nil {
-		fmt.Println("Home Loaded", userSession)
+		// Load Home
 		c.HTML(http.StatusSeeOther, "index.html", userSession)
 		return
 	}
 
+	// Redirect to Login
 	fmt.Println("Redirected to Login")
 	c.HTML(http.StatusOK, "login.html", nil)
 
